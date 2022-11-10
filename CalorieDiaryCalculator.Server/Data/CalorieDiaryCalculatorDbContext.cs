@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace CalorieDiaryCalculator.Server.Data {
-    public class ApplicationDbContext : IdentityDbContext {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public class CalorieDiaryCalculatorDbContext : IdentityDbContext {
+        public CalorieDiaryCalculatorDbContext(DbContextOptions<CalorieDiaryCalculatorDbContext> options)
             : base(options) {
         }
     }

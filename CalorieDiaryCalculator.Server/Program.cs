@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services
-    .AddDbContext<ApplicationDbContext>(options =>
+    .AddDbContext<CalorieDiaryCalculatorDbContext>(options =>
         options.UseSqlServer(connectionString)
     );
 
@@ -16,7 +16,7 @@ builder.Services
 
 builder.Services
     .AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<CalorieDiaryCalculatorDbContext>();
 
 //builder.Services
 //    .AddControllersWithViews();

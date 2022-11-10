@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 
 namespace CalorieDiaryCalculator.Server.Data.Migrations {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(CalorieDiaryCalculatorDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema {
         protected override void BuildTargetModel(ModelBuilder modelBuilder) {

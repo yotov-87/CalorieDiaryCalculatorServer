@@ -6,7 +6,7 @@ namespace CalorieDiaryCalculator.Server.Controllers {
     [Route("[controller]")]
     public class HomeController : ControllerBase {
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Get() {
             return this.Ok("Works!");
         }
