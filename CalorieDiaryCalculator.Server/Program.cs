@@ -1,4 +1,5 @@
 using CalorieDiaryCalculator.Server.Data;
+using CalorieDiaryCalculator.Server.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,7 @@ builder.Services
     .AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
-    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddIdentity<CalorieDiaryCalculatorUser, IdentityRole>()
     .AddEntityFrameworkStores<CalorieDiaryCalculatorDbContext>();
 
 //builder.Services
