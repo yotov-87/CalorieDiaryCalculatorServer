@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "c084534e-e68b-4fa9-976c-528055f9ee74",
+		"name": "CalorieDiaryCalculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1234723"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\": \"test5666\",\r\n    \"email\": \"asfd@abv.bg\",\r\n    \"password\" : \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7001/identity/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"identity",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

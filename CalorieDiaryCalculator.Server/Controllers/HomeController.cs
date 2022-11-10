@@ -2,11 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalorieDiaryCalculator.Server.Controllers {
-    [ApiController]
-    [Route("[controller]")]
-    public class HomeController : ControllerBase {
+    public class HomeController : ApiController {
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Get() {
             return this.Ok("Works!");
         }
