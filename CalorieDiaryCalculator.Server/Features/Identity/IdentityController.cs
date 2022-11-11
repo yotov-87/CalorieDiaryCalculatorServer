@@ -2,22 +2,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace CalorieDiaryCalculator.Server.Features.Identity
 {
     public class IdentityController : ApiController
     {
         private readonly UserManager<CalorieDiaryCalculatorUser> userManager;
+        private readonly IIdentityService identityService;
         private readonly AppSettings appSettings;
 
-        public IdentityController(UserManager<CalorieDiaryCalculatorUser> userManager, IOptions<AppSettings> appSettings)
+        public IdentityController(UserManager<CalorieDiaryCalculatorUser> userManager, IIdentityService identityService, IOptions<AppSettings> appSettings)
         {
             this.userManager = userManager;
             this.appSettings = appSettings.Value;
+            this.identityService = identityService;
 
         }
 
@@ -40,7 +38,7 @@ namespace CalorieDiaryCalculator.Server.Features.Identity
         }
 
         [Route(nameof(Login))]
-        public async Task<ActionResult<object>> Login(LoginRequestModel model)
+        public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
         {
             var user = await userManager.FindByNameAsync(model.UserName);
 
@@ -56,21 +54,13 @@ namespace CalorieDiaryCalculator.Server.Features.Identity
                 return Unauthorized("incorrect password");
             }
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id),
-                    new Claim(ClaimTypes.Name, user.UserName)
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var encryptedToken = tokenHandler.WriteToken(token);
+            var token = this.identityService.GenerateJwtToken(
+                user.Id,
+                user.UserName,
+                this.appSettings.Secret
+            );
 
-            return new { Token = encryptedToken };
+            return new LoginResponseModel { Token = token};
         }
     }
 }

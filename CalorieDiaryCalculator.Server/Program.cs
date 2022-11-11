@@ -19,6 +19,7 @@ builder.Services
     .AddDatabase(builder.Configuration)
     .AddIdentity()
     .AddJwtAuthentication(appSettings)
+    .AddApplicationServices()
     .AddControllers();
 
 var app = builder.Build();

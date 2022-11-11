@@ -1,5 +1,6 @@
 ﻿using CalorieDiaryCalculator.Server.Data;
 using CalorieDiaryCalculator.Server.Data.Models;
+using CalorieDiaryCalculator.Server.Features.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,12 @@ namespace CalorieDiaryCalculator.Server.Infrastructure {
                         ValidateIssuer = false // TODO: set to "true" may be
                     };
                 });
+
+            return services;
+        }
+
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services) {
+            services.AddTransient<IIdentityService, IdentityService>();
 
             return services;
         }
