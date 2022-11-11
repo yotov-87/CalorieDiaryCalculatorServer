@@ -14,17 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddDatabaseDeveloperPageExceptionFilter();
 
+var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettingsSection");
 
+var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-    var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettingsSection");
-    builder.Services.
-        Configure<AppSettings>(applicationSettingsConfiguration);
-
-    var appSettings = applicationSettingsConfiguration.Get<AppSettings>();
-    var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret));
-    
 
 builder.Services
+    .AddDatabase(builder.Configuration)
+    .AddIdentity()
+    .AddJwtAuthentication(appSettings)
     .AddControllers();
 
 var app = builder.Build();

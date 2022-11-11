@@ -8,6 +8,15 @@ using System.Text;
 
 namespace CalorieDiaryCalculator.Server.Infrastructure {
     public static class ServiceCollectionExtensions {
+
+        public static AppSettings GetApplicationSettings(this IServiceCollection services, IConfiguration configuration) {
+            var applicationSettingsConfiguration = configuration.GetSection("ApplicationSettingsSection");
+            services.
+                Configure<AppSettings>(applicationSettingsConfiguration);
+            var appSettings = applicationSettingsConfiguration.Get<AppSettings>();
+
+            return appSettings;
+        }
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) {
             services.AddDbContext<CalorieDiaryCalculatorDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
@@ -28,6 +37,7 @@ namespace CalorieDiaryCalculator.Server.Infrastructure {
 
             return services;
         }
+        
 
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, AppSettings appSettings) {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret));
