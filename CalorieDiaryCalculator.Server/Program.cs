@@ -20,15 +20,6 @@ builder.Services
 builder.Services
     .AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services
-    .AddIdentity<CalorieDiaryCalculatorUser, IdentityRole>(options => {
-        options.Password.RequiredLength = 3;
-        options.Password.RequireDigit = false;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequireLowercase = false;
-    })
-    .AddEntityFrameworkStores<CalorieDiaryCalculatorDbContext>();
 
     var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettingsSection");
     builder.Services.
