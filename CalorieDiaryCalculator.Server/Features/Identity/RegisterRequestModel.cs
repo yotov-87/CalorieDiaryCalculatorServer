@@ -1,11 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CalorieDiaryCalculator.Server.Models.Identity {
-    public class LoginRequestModel {
+namespace CalorieDiaryCalculator.Server.Features.Identity
+{
+    public class RegisterRequestModel
+    {
         [Required]
         public string UserName { get; set; }
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string Email { get; set; }
     }
 }
