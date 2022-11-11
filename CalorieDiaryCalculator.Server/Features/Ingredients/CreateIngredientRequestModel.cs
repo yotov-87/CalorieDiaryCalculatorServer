@@ -1,9 +1,10 @@
-﻿using CalorieDiaryCalculator.Server.Data.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static CalorieDiaryCalculator.Server.Data.Validation.Ingredient;
 
-namespace CalorieDiaryCalculator.Server.Models.Ingredients {
-    public class CreateIngredientRequestModel {
+namespace CalorieDiaryCalculator.Server.Features.Ingredients
+{
+    public class CreateIngredientRequestModel
+    {
 
         [Required]
         [MaxLength(MaxNameLength)]
