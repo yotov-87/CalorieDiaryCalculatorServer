@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CalorieDiaryCalculator.Server.Controllers {
+namespace CalorieDiaryCalculator.Server.Features {
     public class IdentityController : ApiController {
         private readonly UserManager<CalorieDiaryCalculatorUser> userManager;
         private readonly AppSettings appSettings;

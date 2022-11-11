@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CalorieDiaryCalculator.Server.Controllers {
+namespace CalorieDiaryCalculator.Server.Features {
     public class HomeController : ApiController {
 
         [Authorize]

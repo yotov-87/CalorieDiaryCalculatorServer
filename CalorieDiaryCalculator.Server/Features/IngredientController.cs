@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace CalorieDiaryCalculator.Server.Controllers {
+namespace CalorieDiaryCalculator.Server.Features {
     public class IngredientController : ApiController {
         private readonly CalorieDiaryCalculatorDbContext data;
 

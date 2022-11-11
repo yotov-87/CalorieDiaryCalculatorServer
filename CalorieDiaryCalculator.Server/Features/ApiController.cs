@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CalorieDiaryCalculator.Server.Controllers {
+namespace CalorieDiaryCalculator.Server.Features {
     [ApiController]
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase {
