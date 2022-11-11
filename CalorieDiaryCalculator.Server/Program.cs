@@ -10,16 +10,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services
-    .AddDatabaseDeveloperPageExceptionFilter();
-
 var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettingsSection");
 
 var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-
 builder.Services
+    .AddDatabaseDeveloperPageExceptionFilter()
     .AddDatabase(builder.Configuration)
     .AddIdentity()
     .AddJwtAuthentication(appSettings)
@@ -33,20 +29,17 @@ if (app.Environment.IsDevelopment()) {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseRouting();
-
-app.UseCors(x => x
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseEndpoints(endpoints => {
-    endpoints.MapControllers();
-});
-
-app.ApplyMigration();
+app
+    .UseRouting()
+    .UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader())
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseEndpoints(endpoints => {
+        endpoints.MapControllers();
+    })
+    .ApplyMigration();
 
 app.Run();
