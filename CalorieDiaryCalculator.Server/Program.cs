@@ -2,15 +2,8 @@ using CalorieDiaryCalculator.Server;
 using CalorieDiaryCalculator.Server.Data;
 using CalorieDiaryCalculator.Server.Data.Models;
 using CalorieDiaryCalculator.Server.Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettingsSection");
 
 var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 

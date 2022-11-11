@@ -19,6 +19,7 @@ namespace CalorieDiaryCalculator.Server.Infrastructure {
 
             return appSettings;
         }
+
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) {
             services.AddDbContext<CalorieDiaryCalculatorDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
@@ -38,8 +39,7 @@ namespace CalorieDiaryCalculator.Server.Infrastructure {
                 .AddEntityFrameworkStores<CalorieDiaryCalculatorDbContext>();
 
             return services;
-        }
-        
+        }        
 
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, AppSettings appSettings) {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret));
