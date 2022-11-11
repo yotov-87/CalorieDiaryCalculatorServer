@@ -69,5 +69,16 @@ namespace CalorieDiaryCalculator.Server.Infrastructure {
 
             return services;
         }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services) {
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo {
+                    Title = "My CalorieDiaryCalculator API v1",
+                    Version = "v1"
+                });
+            });
+
+            return services;
+        }
     }
 }

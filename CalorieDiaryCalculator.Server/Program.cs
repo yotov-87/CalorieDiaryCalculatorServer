@@ -13,6 +13,7 @@ builder.Services
     .AddIdentity()
     .AddJwtAuthentication(appSettings)
     .AddApplicationServices()
+    .AddSwagger()
     .AddControllers();
 
 var app = builder.Build();
@@ -24,6 +25,7 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app
+    .UseSwaggerUI()
     .UseRouting()
     .UseCors(x => x
         .AllowAnyOrigin()

@@ -19,7 +19,10 @@ namespace CalorieDiaryCalculator.Server.Features.Identity
 
         }
 
+        [HttpPost]
         [Route(nameof(Register))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             var user = new CalorieDiaryCalculatorUser
@@ -37,7 +40,10 @@ namespace CalorieDiaryCalculator.Server.Features.Identity
             return BadRequest(result.Errors);
         }
 
+        [HttpPost]
         [Route(nameof(Login))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
         {
             var user = await userManager.FindByNameAsync(model.UserName);
