@@ -10,5 +10,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
 
         public Task<bool> Update(Guid id, string userId, string name, string ImageUrl, uint caloriesPerGram, bool isPrivate);
 
+        public Task<bool> Delete(Guid id, string userId);
+
     }
 }

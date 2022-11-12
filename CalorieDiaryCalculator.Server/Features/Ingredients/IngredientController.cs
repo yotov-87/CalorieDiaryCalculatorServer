@@ -1,7 +1,10 @@
 ﻿using CalorieDiaryCalculator.Server.Features.Ingredients.Models;
+using CalorieDiaryCalculator.Server.Infrastructure;
 using CalorieDiaryCalculator.Server.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using static CalorieDiaryCalculator.Server.Infrastructure.WebConstants;
 
 namespace CalorieDiaryCalculator.Server.Features.Ingredients
 {
@@ -28,7 +31,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("{ingredientId}")]
+        [Route(ingredientId)]
         public async Task<ActionResult<IngredientDetailsServiceModel>> Details(Guid ingredientId) {
 
             var ingredient = await this.ingredientsService.Details(ingredientId);
@@ -57,6 +60,21 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
             var updated = await this.ingredientsService.Update(model.Id, userId, model.Name, model.ImageUrl, model.CaloriesPerGram, model.IsPrivate);
 
             if (updated == false) {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route(ingredientId)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> Delete(Guid ingredientId) {
+            var userId = User.GetId();
+
+            var result = await this.ingredientsService.Delete(ingredientId, userId);
+
+            if (result == false) {
                 return BadRequest();
             }
 

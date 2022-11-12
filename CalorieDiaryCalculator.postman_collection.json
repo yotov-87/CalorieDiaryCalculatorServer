@@ -198,7 +198,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyNTE3MzUsImV4cCI6MTY2ODg1NjUzNSwiaWF0IjoxNjY4MjUxNzM1fQ.itFff71nFQDsbakDcb1MrlWuAqY8wruafvYYENaaCL4",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyNTIxODMsImV4cCI6MTY2ODg1Njk4MywiaWF0IjoxNjY4MjUyMTgzfQ.aZH83JwnKEP6xVdliEdixNJAi4Oo5wkmcKNuqUWR1fo",
 							"type": "string"
 						}
 					]
@@ -207,7 +207,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"8F2DD352-D65A-45A1-910A-08DAC4287FDF\",\r\n    \"name\": \"str1-UPDATE-UPDATE\",\r\n    \"caloriesPerGram\": 1200,\r\n    \"imageUrl\": \"dddd-UPDATE\",\r\n    \"isPrivate\": true\r\n}",
+					"raw": "{\r\n    \"id\": \"8F2DD352-D65A-45A1-910A-08DAC4287FDF\",\r\n    \"name\": \"str1-UPDATE-UPDAT2222222222E\",\r\n    \"caloriesPerGram\": 1200,\r\n    \"imageUrl\": \"dddd-UPDATE\",\r\n    \"isPrivate\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -224,6 +224,36 @@
 					"path": [
 						"ingredient",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete ingredient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyNTQ3MjksImV4cCI6MTY2ODg1OTUyOSwiaWF0IjoxNjY4MjU0NzI5fQ.8lRvGmD3JOX6GJ_OV0QRPWsCII9D1qDg8ZRmNeWhDbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7001/ingredient/8F2DD352-D65A-45A1-910A-08DAC4287FDF",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"ingredient",
+						"8F2DD352-D65A-45A1-910A-08DAC4287FDF"
 					]
 				}
 			},

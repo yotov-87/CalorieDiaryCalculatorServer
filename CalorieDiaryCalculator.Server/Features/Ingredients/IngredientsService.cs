@@ -59,10 +59,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
         }
 
         public async Task<bool> Update(Guid id, string userId, string name, string ImageUrl, uint caloriesPerGram, bool isPrivate) {
-            var ingredient = await this.data
-                .Ingredients
-                .Where(ingredient => ingredient.Id == id && ingredient.UserId == userId)
-                .FirstOrDefaultAsync();
+            var ingredient = await GetIgredientByIdAndUserId(id, userId);
 
             if (ingredient == null) {
                 return false;
@@ -76,6 +73,28 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
             await this.data.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<bool> Delete(Guid id, string userId) {
+            var ingredient = await GetIgredientByIdAndUserId(id, userId);
+
+            if (ingredient == null) {
+                return false;
+            }
+
+            this.data.Ingredients.Remove(ingredient);
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<Ingredient> GetIgredientByIdAndUserId(Guid ingredientId, string userId) {
+            var ingredient = await this.data
+                .Ingredients
+                .Where(ingredient => ingredient.Id == ingredientId && ingredient.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            return ingredient;
         }
     }
 }
