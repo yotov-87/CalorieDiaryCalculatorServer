@@ -1,6 +1,3 @@
-using CalorieDiaryCalculator.Server;
-using CalorieDiaryCalculator.Server.Data;
-using CalorieDiaryCalculator.Server.Data.Models;
 using CalorieDiaryCalculator.Server.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

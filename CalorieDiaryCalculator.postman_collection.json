@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"UserName\": \"test5666\",\r\n    \"email\": \"asfd@abv.bg\",\r\n    \"password\" : \"123\"\r\n}",
+					"raw": "{\r\n    \"UserName\": \"test0\",\r\n    \"email\": \"asfd@abv.bg\",\r\n    \"password\" : \"123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,16 +38,125 @@
 		{
 			"name": "Home",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTQxYTk5MzEtNDU1Ny00M2IxLTk3NjktNzllMjEwNWFkNDNjIiwibmJmIjoxNjY4MTA5MjY1LCJleHAiOjE2Njg3MTQwNjUsImlhdCI6MTY2ODEwOTI2NX0.cN2JfsO_yPYeJPTyidiA8j4mfwn1MQjlhAECXZ-mpJo",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7001/home",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"home"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Login User",
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\": \"test0\",\r\n    \"email\": \"asfd@abv.bg\",\r\n    \"password\" : \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7001/identity/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"identity",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ingredient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyMzkyMTEsImV4cCI6MTY2ODg0NDAxMSwiaWF0IjoxNjY4MjM5MjExfQ.4PjtGXLN1ciPNBLedbfaxqUinIYPMK9OKbGYGCMGOSA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"str1\",\r\n    \"caloriesPerGram\": 12,\r\n    \"imageUrl\": \"dddd\",\r\n    \"isPrivate\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7001/ingredient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"ingredient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Inredients By UserId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyMzkyMTEsImV4cCI6MTY2ODg0NDAxMSwiaWF0IjoxNjY4MjM5MjExfQ.4PjtGXLN1ciPNBLedbfaxqUinIYPMK9OKbGYGCMGOSA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7001/ingredient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"ingredient"
+					]
+				}
 			},
 			"response": []
 		}

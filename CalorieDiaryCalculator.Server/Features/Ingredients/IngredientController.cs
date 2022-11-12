@@ -1,8 +1,5 @@
-﻿using CalorieDiaryCalculator.Server.Data;
-using CalorieDiaryCalculator.Server.Data.Models;
-using CalorieDiaryCalculator.Server.Infrastructure;
+﻿using CalorieDiaryCalculator.Server.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalorieDiaryCalculator.Server.Features.Ingredients
@@ -14,6 +11,17 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
         public IngredientController(IIngredientsService ingredientsService)
         {
             this.ingredientsService = ingredientsService;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IEnumerable<IngredientListingResponseModel>> Mine()
+        {
+            var userId = User.GetId();
+
+            var result = await this.ingredientsService.ByUser(userId);
+
+            return result;
         }
 
         [Authorize]
