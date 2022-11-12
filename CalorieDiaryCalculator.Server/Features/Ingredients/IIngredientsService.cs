@@ -8,5 +8,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
 
         public Task<IngredientDetailsServiceModel> Details(Guid ingredientId);
 
+        public Task<bool> Update(Guid id, string userId, string name, string ImageUrl, uint caloriesPerGram, bool isPrivate);
+
     }
 }

@@ -159,6 +159,75 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Igredient by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyNDc4ODUsImV4cCI6MTY2ODg1MjY4NSwiaWF0IjoxNjY4MjQ3ODg1fQ.mD3NvMI8_ChztYKSXrQ4As9qf6HLBD5p4S1BgPHzdLU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7001/ingredient/D008DF8E-DEF3-4FA7-AC75-08DAC4195B93",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"ingredient",
+						"D008DF8E-DEF3-4FA7-AC75-08DAC4195B93"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update ingradient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3MDRlMjU4Mi1mZTE2LTRhMTYtYmVjOC02MDYzNzdhYzI4NzciLCJuYW1lIjoidGVzdDAiLCJuYmYiOjE2NjgyNTE3MzUsImV4cCI6MTY2ODg1NjUzNSwiaWF0IjoxNjY4MjUxNzM1fQ.itFff71nFQDsbakDcb1MrlWuAqY8wruafvYYENaaCL4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"8F2DD352-D65A-45A1-910A-08DAC4287FDF\",\r\n    \"name\": \"str1-UPDATE-UPDATE\",\r\n    \"caloriesPerGram\": 1200,\r\n    \"imageUrl\": \"dddd-UPDATE\",\r\n    \"isPrivate\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7001/ingredient/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"ingredient",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

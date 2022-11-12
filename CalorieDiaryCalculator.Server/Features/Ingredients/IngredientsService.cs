@@ -57,5 +57,25 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
 
             return result;
         }
+
+        public async Task<bool> Update(Guid id, string userId, string name, string ImageUrl, uint caloriesPerGram, bool isPrivate) {
+            var ingredient = await this.data
+                .Ingredients
+                .Where(ingredient => ingredient.Id == id && ingredient.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (ingredient == null) {
+                return false;
+            }
+
+            ingredient.Name = name;
+            ingredient.CaloriesPerGram = caloriesPerGram;
+            ingredient.ImageUrl = ImageUrl;
+            ingredient.IsPrivate = isPrivate;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

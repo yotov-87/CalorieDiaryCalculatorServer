@@ -47,5 +47,20 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
 
             return Created(nameof(this.Create), ingredientId);
         }
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Update(UpdateIngredientRequestModel model) {
+            var userId = User.GetId();
+
+            var updated = await this.ingredientsService.Update(model.Id, userId, model.Name, model.ImageUrl, model.CaloriesPerGram, model.IsPrivate);
+
+            if (updated == false) {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }
