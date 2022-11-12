@@ -1,4 +1,5 @@
 ﻿using CalorieDiaryCalculator.Server.Data.Models;
+using CalorieDiaryCalculator.Server.Features.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

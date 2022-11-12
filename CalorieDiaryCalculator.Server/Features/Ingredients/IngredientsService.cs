@@ -1,5 +1,6 @@
 ﻿using CalorieDiaryCalculator.Server.Data;
 using CalorieDiaryCalculator.Server.Data.Models;
+using CalorieDiaryCalculator.Server.Features.Ingredients.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalorieDiaryCalculator.Server.Features.Ingredients {
@@ -25,17 +26,34 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
             return ingredient.Id;
         }
 
-        public async Task<IEnumerable<IngredientListingResponseModel>> ByUser(string userId) {
+        public async Task<IEnumerable<IngredientListingServiceModel>> ByUser(string userId) {
             var result = await this.data
                 .Ingredients
                 .Where(ingradient => ingradient.UserId == userId)
-                .Select(ingredient => new IngredientListingResponseModel {
+                .Select(ingredient => new IngredientListingServiceModel {
                     Id = ingredient.Id,
                     Name = ingredient.Name,
                     CaloriesPerGram = ingredient.CaloriesPerGram,
                     ImageUrl = ingredient.ImageUrl
                 })
                 .ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IngredientDetailsServiceModel> Details(Guid ingredientId) {
+            var result = await this.data
+                .Ingredients
+                .Where(ingredient => ingredient.Id == ingredientId)
+                .Select(ingredient => new IngredientDetailsServiceModel {
+                    Id = ingredient.Id,
+                    Name = ingredient.Name,
+                    CaloriesPerGram = ingredient.CaloriesPerGram,
+                    ImageUrl = ingredient.ImageUrl,
+                    UserId = ingredient.UserId,
+                    UserName = ingredient.User.UserName
+                })
+                .FirstOrDefaultAsync();
 
             return result;
         }

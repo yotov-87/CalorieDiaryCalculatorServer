@@ -1,4 +1,5 @@
-using CalorieDiaryCalculator.Server.Infrastructure;
+using CalorieDiaryCalculator.Server.Infrastructure.Extensions;
+using CalorieDiaryCalculator.Server.Infrastructure.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services
     .AddJwtAuthentication(appSettings)
     .AddApplicationServices()
     .AddSwagger()
-    .AddControllers();
+    .AddApiControllers();
 
 var app = builder.Build();
 

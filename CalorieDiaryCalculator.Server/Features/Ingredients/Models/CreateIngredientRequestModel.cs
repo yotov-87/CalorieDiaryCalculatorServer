@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static CalorieDiaryCalculator.Server.Data.Validation.Ingredient;
 
-namespace CalorieDiaryCalculator.Server.Features.Ingredients
+namespace CalorieDiaryCalculator.Server.Features.Ingredients.Models
 {
     public class CreateIngredientRequestModel
     {

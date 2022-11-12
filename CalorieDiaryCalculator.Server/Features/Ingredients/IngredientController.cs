@@ -1,9 +1,11 @@
-﻿using CalorieDiaryCalculator.Server.Infrastructure;
+﻿using CalorieDiaryCalculator.Server.Features.Ingredients.Models;
+using CalorieDiaryCalculator.Server.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalorieDiaryCalculator.Server.Features.Ingredients
 {
+    [Authorize]
     public class IngredientController : ApiController
     {
         private readonly IIngredientsService ingredientsService;
@@ -14,8 +16,8 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
         }
 
         [HttpGet]
-        [Authorize]
-        public async Task<IEnumerable<IngredientListingResponseModel>> Mine()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IEnumerable<IngredientListingServiceModel>> Mine()
         {
             var userId = User.GetId();
 
@@ -24,7 +26,17 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
             return result;
         }
 
-        [Authorize]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{ingredientId}")]
+        public async Task<ActionResult<IngredientDetailsServiceModel>> Details(Guid ingredientId) {
+
+            var ingredient = await this.ingredientsService.Details(ingredientId);
+
+            return ingredient;
+
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(CreateIngredientRequestModel model)
