@@ -1,6 +1,5 @@
 ﻿using CalorieDiaryCalculator.Server.Features.Ingredients.Models;
-using CalorieDiaryCalculator.Server.Infrastructure;
-using CalorieDiaryCalculator.Server.Infrastructure.Extensions;
+using CalorieDiaryCalculator.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,17 +11,19 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
     public class IngredientController : ApiController
     {
         private readonly IIngredientsService ingredientsService;
+        private readonly ICurrentUserService currentUser;
 
-        public IngredientController(IIngredientsService ingredientsService)
+        public IngredientController(IIngredientsService ingredientsService, ICurrentUserService currentUser)
         {
             this.ingredientsService = ingredientsService;
+            this.currentUser = currentUser;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IEnumerable<IngredientListingServiceModel>> Mine()
         {
-            var userId = User.GetId();
+            var userId = this.currentUser.GetId();
 
             var result = await this.ingredientsService.ByUser(userId);
 
@@ -44,7 +45,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(CreateIngredientRequestModel model)
         {
-            var userId = User.GetId();
+            var userId = this.currentUser.GetId();
 
             var ingredientId = await this.ingredientsService.Create(model.Name, model.CaloriesPerGram, model.ImageUrl, model.IsPrivate, userId);
 
@@ -55,7 +56,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Update(UpdateIngredientRequestModel model) {
-            var userId = User.GetId();
+            var userId = this.currentUser.GetId();
 
             var updated = await this.ingredientsService.Update(model.Id, userId, model.Name, model.ImageUrl, model.CaloriesPerGram, model.IsPrivate);
 
@@ -70,7 +71,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients
         [Route(ingredientId)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Delete(Guid ingredientId) {
-            var userId = User.GetId();
+            var userId = this.currentUser.GetId();
 
             var result = await this.ingredientsService.Delete(ingredientId, userId);
 

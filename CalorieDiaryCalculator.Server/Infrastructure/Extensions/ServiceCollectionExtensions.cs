@@ -3,6 +3,7 @@ using CalorieDiaryCalculator.Server.Data.Models;
 using CalorieDiaryCalculator.Server.Features.Identity;
 using CalorieDiaryCalculator.Server.Features.Ingredients;
 using CalorieDiaryCalculator.Server.Infrastructure.Filters;
+using CalorieDiaryCalculator.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -76,8 +77,11 @@ namespace CalorieDiaryCalculator.Server.Infrastructure.Extensions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddTransient<IIdentityService, IdentityService>()
+            services
+                .AddScoped<ICurrentUserService, CurrentUserService>()
+                .AddTransient<IIdentityService, IdentityService>()
                 .AddTransient<IIngredientsService, IngredientsService>();
+                
 
             return services;
         }

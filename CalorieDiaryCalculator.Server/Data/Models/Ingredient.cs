@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CalorieDiaryCalculator.Server.Data.Models.Base;
+using System.ComponentModel.DataAnnotations;
 using static CalorieDiaryCalculator.Server.Data.Validation.Ingredient;
 
 namespace CalorieDiaryCalculator.Server.Data.Models {
-    public class Ingredient {
+    public class Ingredient : DeletableEntity {
 
         public Guid Id { get; set; }
 
