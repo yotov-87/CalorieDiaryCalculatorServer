@@ -29,7 +29,8 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
         public async Task<IEnumerable<IngredientListingServiceModel>> ByUser(string userId) {
             var result = await this.data
                 .Ingredients
-                .Where(ingradient => ingradient.UserId == userId && ingradient.IsDeleted == false)
+                .Where(ingradient => ingradient.UserId == userId)
+                .OrderByDescending(ingredient => ingredient.CreatedOn)
                 .Select(ingredient => new IngredientListingServiceModel {
                     Id = ingredient.Id,
                     Name = ingredient.Name,

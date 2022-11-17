@@ -34,6 +34,7 @@ namespace CalorieDiaryCalculator.Server.Data {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Ingredient>()
+                .HasQueryFilter(ingredient => ingredient.IsDeleted == false)
                 .HasOne(ingredient => ingredient.User)
                 .WithMany(user => user.Ingredients)
                 .HasForeignKey(ingredient => ingredient.UserId)
