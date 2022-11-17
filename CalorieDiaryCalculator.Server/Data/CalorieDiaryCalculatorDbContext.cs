@@ -46,19 +46,17 @@ namespace CalorieDiaryCalculator.Server.Data {
 
             var a = this.ChangeTracker
                 .Entries()
-                .Where(entry => entry.State != EntityState.Unchanged)
-                .Select(entry => new {
-                    entry.Entity,
-                    entry.State
-                })
                 .ToList();
              a
                 .ForEach(entry => {
                     var userName = this.currentUser.GetUserName();
 
-                    if (entry.Entity is IDeletableEntity deletableEntity && entry.State == EntityState.Deleted) {
-                            deletableEntity.DeletedOn = DateTime.UtcNow;
-                            deletableEntity.DeletedBy = userName;
+                    if (entry.Entity is IDeletableEntity deletableEntity) {
+                        deletableEntity.DeletedOn = DateTime.UtcNow;
+                        deletableEntity.DeletedBy = userName;
+                        deletableEntity.IsDeleted = true;
+
+                        entry.State = EntityState.Modified;
                     }
                     
                     if (entry.Entity is IEntity entity) {

@@ -29,7 +29,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
         public async Task<IEnumerable<IngredientListingServiceModel>> ByUser(string userId) {
             var result = await this.data
                 .Ingredients
-                .Where(ingradient => ingradient.UserId == userId)
+                .Where(ingradient => ingradient.UserId == userId && ingradient.IsDeleted == false)
                 .Select(ingredient => new IngredientListingServiceModel {
                     Id = ingredient.Id,
                     Name = ingredient.Name,
@@ -76,7 +76,7 @@ namespace CalorieDiaryCalculator.Server.Features.Ingredients {
         }
 
         public async Task<bool> Delete(Guid id, string userId) {
-            var ingredient = await GetIgredientByIdAndUserId(id, userId);
+            var ingredient = await GetIgredientByIdAndUserId(id, userId);            
 
             if (ingredient == null) {
                 return false;
