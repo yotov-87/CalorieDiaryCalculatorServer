@@ -46,7 +46,7 @@ namespace CalorieDiaryCalculator.Server.Data {
 
             var a = this.ChangeTracker
                 .Entries()
-                .Where(entry => entry.State == EntityState.Added)
+                .Where(entry => entry.State != EntityState.Unchanged)
                 .Select(entry => new {
                     entry.Entity,
                     entry.State
@@ -60,7 +60,8 @@ namespace CalorieDiaryCalculator.Server.Data {
                             deletableEntity.DeletedOn = DateTime.UtcNow;
                             deletableEntity.DeletedBy = userName;
                     }
-                    else if (entry.Entity is IEntity entity) {
+                    
+                    if (entry.Entity is IEntity entity) {
                         if (entry.State == EntityState.Added) {
                             entity.CreatedOn = DateTime.UtcNow;
                             entity.CreatedBy = userName;
